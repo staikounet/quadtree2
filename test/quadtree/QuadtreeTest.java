@@ -5,6 +5,7 @@
  */
 package quadtree;
 
+import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -46,5 +47,28 @@ public class QuadtreeTest {
         assertEquals(node.getNodes().get(1).getPoints().size(), 1);
         assertEquals(node.getNodes().get(2).getPoints().size(), 1);
         assertEquals(node.getNodes().get(3).getPoints().size(), 0);
+    }
+    
+    @Test
+    public void getPointClosest(){
+        Node node = new Node(new Point(0,0), 6, 6);
+        Point point1 = new Point(1,1);
+        Point point2 = new Point(1,2);
+        Point point3 = new Point(4,1);
+        Point point4 = new Point(5,2);
+        Point point5 = new Point(2,2);
+                
+        node.getPoints().add(point1);
+        node.getPoints().add(point2);
+        node.getPoints().add(point3);
+        node.getPoints().add(point4);
+        node.getPoints().add(point5);
+        Quadtree tree = new Quadtree();
+        tree.setGrid(node);
+        ArrayList<Point> closests = tree.getClosests(1,1);
+        assertEquals(closests.size(), 2);
+        assertTrue(closests.contains(point2));
+        assertTrue(closests.contains(point5));
+        assertFalse(closests.contains(point1));
     }
 }
