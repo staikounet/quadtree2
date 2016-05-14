@@ -21,4 +21,12 @@ public class NodeTest {
         assertTrue(node1.contains(point));
         assertTrue(node2.contains(point));
     }
+    
+    @Test
+    public void shouldNotContain() {
+        Point point = new Point(2,2);
+        Node node = new Node(new Point(3,3), 3, 3);
+        assertFalse(node.contains(point));
+    }
+    
 }
