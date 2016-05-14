@@ -86,6 +86,6 @@ public class QuadtreeTest {
         tree.addPoint(point3);
         tree.addPoint(point4);
         tree.addPoint(point5);
-        assertEquals(tree.getDeepness(point2), 2);
+        assertEquals(tree.getDeepness(1,2), 1);
     }
 }

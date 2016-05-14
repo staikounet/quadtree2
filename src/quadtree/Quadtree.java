@@ -71,8 +71,17 @@ public class Quadtree {
         grid.printInConsole();
     }
 
-    Object getDeepness(Point point2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getDeepness(int x, int y) {
+        Node node = Quadtree.this.getNodeWherePointIs(x, y);
+        int result = -9999;
+        if (node != null) {
+            if (node.pointIsHere(new Point(x, y))) {
+                result = node.getDeepness();
+            } else {
+                result = -node.getDeepness();
+            }
+        }
+        return result;
     }
 
     

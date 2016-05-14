@@ -166,4 +166,15 @@ public class Node {
             childNode.printInConsole();
         }
     }
+    
+    public boolean pointIsHere(Point point) {
+        boolean result = false;
+        for (Point childPoint : getPoints()) {
+            if (point.getX() == childPoint.getX() && point.getY() == childPoint.getY()) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
 }
