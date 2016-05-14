@@ -52,4 +52,14 @@ public class Node {
         int py = p.getY();
         return px >= origin.getX() && py >= origin.getY() && px <= origin.getX() + width && py <= origin.getY() + height;
     }
+
+    ArrayList<Point> getPointsBut(Point point) {
+        ArrayList<Point> result = new ArrayList<>();
+        for (Point childPoint : getPoints()) {
+            if (childPoint.getX() != point.getX() && childPoint.getY() != point.getY()) {
+                result.add(childPoint);
+            }
+        }
+        return result;
+    }
 }
