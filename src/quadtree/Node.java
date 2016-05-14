@@ -151,4 +151,19 @@ public class Node {
         }
         return result;
     }
+    
+    protected void printInConsole() {
+        String before = "";
+        for (int i = 0; i < getDeepness() - 1; i++) {
+            before += "\t";
+        }
+        System.out.println(before + "Noeud");
+        before += "\t";
+        for (Point point : getPoints()) {
+            System.out.println(before + point.getX() + "," + point.getY());
+        }
+        for (Node childNode : getNodes()) {
+            childNode.printInConsole();
+        }
+    }
 }

@@ -70,4 +70,22 @@ public class QuadtreeTest {
         assertTrue(closests.contains(point5));
         assertFalse(closests.contains(point1));
     }
+    
+    @Test
+    public void getPointDeepness(){
+        Node node = new Node(new Point(0,0), 6, 6);
+        Point point1 = new Point(1,1);
+        Point point2 = new Point(1,2);
+        Point point3 = new Point(4,1);
+        Point point4 = new Point(5,2);
+        Point point5 = new Point(2,2);
+        Quadtree tree = new Quadtree();
+        tree.setGrid(node);
+        tree.addPoint(point1);
+        tree.addPoint(point2);
+        tree.addPoint(point3);
+        tree.addPoint(point4);
+        tree.addPoint(point5);
+        assertEquals(tree.getDeepness(point2), 2);
+    }
 }

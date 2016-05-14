@@ -50,6 +50,15 @@ public class Quadtree {
         return result;
     }
     
+    ArrayList<Point> getRandomPoints(int i) {
+        ArrayList<Point> result = new ArrayList<>();
+        ArrayList<Point> allPoints = grid.getDescendantPoints(null);
+        for (int j = 0; j < i; j++) {
+            result.add(allPoints.get(new Random().nextInt(allPoints.size())));
+        }
+        return result;
+    }
+
     public Node getNodeWherePointIs(int x, int y) {
         return Quadtree.this.getNodeWherePointIs(new Point(x, y));
     }
@@ -58,5 +67,14 @@ public class Quadtree {
         return grid.getDescendantNodeWherePointIs(p);
     }
 
+    public void printInConsole() {
+        grid.printInConsole();
+    }
+
+    Object getDeepness(Point point2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     
 }
