@@ -29,4 +29,16 @@ public class NodeTest {
         assertFalse(node.contains(point));
     }
     
+    @Test
+    public void shouldCountPointsCorrectly(){
+        Node node = new Node(new Point(0,0), 3, 3);
+        Point intruder = new Point(2,2);
+        node.getPoints().add(new Point(1,1));
+        node.getPoints().add(new Point(1,2));
+        node.getPoints().add(new Point(2,1));
+        node.getPoints().add(intruder);
+        int numberOfPointsExceptIntruder = node.getPointsBut(intruder).size();
+        assertEquals(numberOfPointsExceptIntruder, 3);
+    }
+    
 }
