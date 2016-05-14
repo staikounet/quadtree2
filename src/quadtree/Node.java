@@ -62,4 +62,58 @@ public class Node {
         }
         return result;
     }
+    
+    protected int addPoint(Point point) {
+        int maxdeep = getDeepness();
+        if (contains(point)) {
+            if (getNodes().isEmpty()) {
+                getPoints().add(point);
+                if (getPoints().size() > 4) {
+                    int w = getWidth() / 2;
+                    int h = getHeight() / 2;
+                    Node child1 = new Node(new Point(getOrigin().getX(), getOrigin().getY()), w, h);
+                    Node child2 = new Node(new Point(getOrigin().getX(), getOrigin().getY()).translate(w, 0), w, h);
+                    Node child3 = new Node(new Point(getOrigin().getX(), getOrigin().getY()).translate(0, h), w, h);
+                    Node child4 = new Node(new Point(getOrigin().getX(), getOrigin().getY()).translate(w, h), w, h);
+                    child1.setDeepness(getDeepness() + 1);
+                    child2.setDeepness(getDeepness() + 1);
+                    child3.setDeepness(getDeepness() + 1);
+                    child4.setDeepness(getDeepness() + 1);
+                    if (getDeepness() + 1 > maxdeep) {
+                        maxdeep = getDeepness() + 1;
+                    }
+                    getNodes().add(child1);
+                    getNodes().add(child2);
+                    getNodes().add(child3);
+                    getNodes().add(child4);
+                    ArrayList<Point> tmp = new ArrayList<>();
+                    tmp.addAll(getPoints());
+                    getPoints().clear();
+                    for (Point childPoint : tmp) {
+                        addPoint(childPoint);
+                    }
+                }
+            } else {
+                int isIn = pointIsInHowMuchChildNodes(point);
+                if (isIn < 2) {
+                    for (Node childNode : getNodes()) {
+                        childNode.addPoint(point);
+                    }
+                } else {
+                    getPoints().add(point);
+                }
+            }
+        }
+        return maxdeep;
+    }
+
+    protected int pointIsInHowMuchChildNodes(Point point) {
+        int isIn = 0;
+        for (Node childNode : getNodes()) {
+            if (childNode.contains(point)) {
+                isIn++;
+            }
+        }
+        return isIn;
+    }
 }
