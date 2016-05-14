@@ -56,7 +56,7 @@ public class Node {
     ArrayList<Point> getPointsBut(Point point) {
         ArrayList<Point> result = new ArrayList<>();
         for (Point childPoint : getPoints()) {
-            if (childPoint.getX() != point.getX() && childPoint.getY() != point.getY()) {
+            if (childPoint.getX() != point.getX() || childPoint.getY() != point.getY()) {
                 result.add(childPoint);
             }
         }
