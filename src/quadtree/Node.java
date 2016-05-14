@@ -116,4 +116,39 @@ public class Node {
         }
         return isIn;
     }
+    
+    public Node getDescendantNodeWherePointIs(Point point) {
+        Node result = null;
+        if (getNodes().isEmpty() && contains(point)) {
+            result = this;
+        } else if (contains(point)) {
+                int isIn = pointIsInHowMuchChildNodes(point);
+            if (isIn >= 2) {
+                result = this;
+            } else {
+                for (Node childNode : getNodes()) {
+                    Node tmp = childNode.getDescendantNodeWherePointIs(point);
+                    if (tmp != null) {
+                        result = tmp;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+    
+    public ArrayList<Point> getDescendantPoints(Point point) {
+        ArrayList<Point> result = new ArrayList<>();
+        if (point == null) {
+            result.addAll(getPoints());
+        } else {
+            result.addAll(getPointsBut(point));
+        }
+        for (Node childNode : getNodes()) {
+            result.addAll(childNode.getDescendantPoints(point));
+        }
+        return result;
+    }
 }
