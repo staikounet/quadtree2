@@ -57,14 +57,13 @@ public class QuadtreeTest {
         Point point3 = new Point(4,1);
         Point point4 = new Point(5,2);
         Point point5 = new Point(2,2);
-                
-        node.getPoints().add(point1);
-        node.getPoints().add(point2);
-        node.getPoints().add(point3);
-        node.getPoints().add(point4);
-        node.getPoints().add(point5);
         Quadtree tree = new Quadtree();
         tree.setGrid(node);
+        tree.addPoint(point1);
+        tree.addPoint(point2);
+        tree.addPoint(point3);
+        tree.addPoint(point4);
+        tree.addPoint(point5);
         ArrayList<Point> closests = tree.getClosests(1,1);
         assertEquals(closests.size(), 2);
         assertTrue(closests.contains(point2));
